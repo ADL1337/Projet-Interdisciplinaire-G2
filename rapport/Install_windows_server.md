@@ -13,7 +13,7 @@
 
 2. Active directory
     ISIMS.PARK
-    Comptes : 
+    - Comptes : 
     1. User
     2. Modérateur
     3. Admin
