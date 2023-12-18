@@ -13,10 +13,10 @@
 
 2. Active directory
     ISIMS.PARK
-    Comptes
-    User
-    Modérateur
-    Admin
+    Comptes : 
+    1. User
+    2. Modérateur
+    3. Admin
 
 3. Serveur DNS
     Donner un nom aux serveurs:
