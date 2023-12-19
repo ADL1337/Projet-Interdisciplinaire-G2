@@ -34,6 +34,19 @@
     - ALIAS: velo.isims.park 
 
 
+4. Certificat AD CS Installation : 
+
+    Informations d'identification: Administrator
+    
+    Autorité de certification d'entreprise afin de stocker les données dans l'AD directement. 
+    
+    GR2-ISIMSPARK-CA 
+
+    Nouvelle clé privée:
+    Hash : SHA256 
+
+    Periode de validité: 5 ans
+
 4. Divers problèmes rencontrés: 
     Problemes lors de l'installation de l'AD notamment carte réseaux interne/externe => configurée sur le wifi 
     PAPY2FAST — Aujourd’hui à 13:45
