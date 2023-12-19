@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../src/framework/core/router.php";
+require_once __DIR__ . "/src/framework/core/router.php";
 
 $router = new Router();
 
