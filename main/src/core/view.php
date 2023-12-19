@@ -12,6 +12,8 @@ class View {
     }
 
     public function generateView(array $data) {
+        echo "generate";
+        var_dump($data);
         # Render the specific view with the necessary data
         $content = $this->renderView($this->viewPath, $data);
 
@@ -22,6 +24,7 @@ class View {
     }
 
     private function renderView(string $viewName, array $data) {
+        echo "<br>render => $viewName";
         if (file_exists($this->getViewPath($viewName))) {
             # Extract the variables for the views
             extract($data);
