@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/view.php";
 
 abstract class Controller {
     # Static attribute because we don't need multiple instances of the same controllers

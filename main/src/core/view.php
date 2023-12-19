@@ -17,7 +17,7 @@ class View {
 
         # Render the template view 
         $view = $this->renderView(self::$templateName, array("title" => $this->title,
-                                                         "content" => $content));
+                                                             "content" => $content));
         return $view;
     }
 
@@ -36,6 +36,7 @@ class View {
         }
     }
 
+    # Method to add the redundant filepath elements to get the view filepath
     private function getViewPath(string $viewName) {
         return self::$viewsDir . $viewName . ".php";
     }
