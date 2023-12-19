@@ -31,7 +31,7 @@
 
     - 192.168.100.245
 
-    - ALIAS: velo.isims.park 
+    - ALIAS: www.isims.park 
 
 
 4. Certificat AD CS Installation : 
