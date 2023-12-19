@@ -9,7 +9,7 @@ class ErrorController extends Controller {
     private static string $errorMessage;
 
     public static function execute() {
-        self::showError(get_error_message(self::$errorCode));
+        self::showError(HttpErrorManager::getErrorMessage(self::$errorCode));
     }
 
     private static function showError() {
@@ -18,8 +18,8 @@ class ErrorController extends Controller {
     }
     
     public static function setError($errorCode) {
-        self::$errorCode = sanitize_error_code($errorCode);
-        self::$errorMessage = get_error_message(self::$errorCode);
+        self::$errorCode = HttpErrorManager::sanitizeErrorCode($errorCode);
+        self::$errorMessage = HttpErrorManager::getErrorMessage(self::$errorCode);
     }
 }
 
