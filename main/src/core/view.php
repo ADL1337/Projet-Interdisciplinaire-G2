@@ -2,21 +2,21 @@
 
 class View {
     private static string $viewsDir = __DIR__ . "/../views/";
-    private static string $template = "template.php"; # We could change this to an instance attribute if we want to allow multiple templates
-    private string $viewPath;
+    private static string $templateName = "template"; # We could change this to an instance attribute if we want to allow multiple templates
+    private string $viewName;
     private string $title;
 
     public function __construct(string $viewName, string $viewTitle) {
-        $this->viewPath = $this->getViewPath($viewName);
+        $this->viewName = $this->getViewPath($viewName);
         $this->title = $viewTitle;
     }
 
     public function generateView(array $data) {
         # Render the specific view with the necessary data
-        $content = $this->renderView($this->viewPath, $data);
+        $content = $this->renderView($this->viewName, $data);
 
         # Render the template view 
-        $view = $this->renderView(self::$template, array("title" => $this->title,
+        $view = $this->renderView(self::$templateName, array("title" => $this->title,
                                                          "content" => $content));
         return $view;
     }
