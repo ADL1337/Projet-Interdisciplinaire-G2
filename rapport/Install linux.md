@@ -1,39 +1,88 @@
 
 ```bash
-dnf install httpd (and httpd-tools)
-systemctl enable httpd.service 
+sudo dnf install httpd (and httpd-tools)
+sudo systemctl enable httpd.service 
 ```
 - Dans /etc/httpd/conf httpd.conf 
 	- modifier DocumentRoot "/web" 
+		- en desous rajouter ServerName www.isims.park
+		- 
 - dans /etc/selinux 
 	- Modifier SELINUX = disable
 
  ```bash
-systemctl stop iptables.service
-systemctl enable firewalld.service
-systemctl start firewalld.service # ATTENTION SSH
-firewall-cmd --permanent --zone=public --add-service=http
-sudo firewall-cmd --zone=public --add-port=22/tcp
-sudo firewall-cmd --zone=public --add-port=5813/tcp
-sudo firewall-cmd --zone=public --add-port=5813/udp
-firewall-cmd --reload
+sudo dnf install iptables 
+sudo systemctl enable iptable 
+sudo systemctl start iptables
 
 ```
+	- créer un fichier .sh 
+```bash
+!/bin/bash
+
+iptables -F   #vider la table au début
+
+iptables -P INPUT DROP # remet les politiques par défault
+iptables -P OUTPUT DROP # remet les politiques par défault
+
+# accepter les connections etablies 
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
+iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# autoriser le SSH
+iptables -A INPUT -p TCP --dport 6969 -j ACCEPT 
+iptables -A OUTPUT -p TCP --sport 6969 -j ACCEPT
+
+# autoriser le trafic web
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT 
+iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT 
+iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+
+# Autoriser le dns
+iptables -A INPUT -p tcp --dport 53 -j ACCEPT 
+iptables -A OUTPUT -p tcp --dport 54 -j ACCEPT
+iptables -A INPUT -p udp --dport 53 -j ACCEPT 
+iptables -A OUTPUT -p udp --dport 54 -j ACCEPT
+
+# pour autoiser le ping
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A OUTPUT -p icmp -j ACCEPT
+
+# autoriser  LDAP 
+iptables -A OUTPUT -p TCP --sport 389 -j ACCEPT
+```
+	- créer fichier.service 
+
+```bash
+[Unit]
+Description=firewall
+
+[Service]
+ExecStart=/etc/firewall.sh
+Restart=no-failure
+Type=oneshot
+
+[Install]
+WantedBy=default.target
+```
+
 - php
 ```bash
-dnf module enable php:8.1
-dnf install php
-dnf install php php-ldap
-dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-dnf install php
-systemctl restart httpd.service
+sudo dnf module enable php:8.1
+sudo dnf install php
+sudo dnf install php php-ldap
+sudo dnf install php-mysqlnd
+sudo dnf intall mod_ssl
+sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm[]()
+sudo systemctl restart httpd.service
 ```
 
 - mysql
 ```bash
-dnf search mysql
-dnf install mysql-server mysql
-systemctl enable mysqld
-systemctl start mysqld.service
+sudo dnf search mysql
+sudo dnf install mysql-server mysql
+sudo systemctl enable mysqld
+sudo systemctl start mysqld.service
 ```
 
