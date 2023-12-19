@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/route.php";
+require_once __DIR__ . "/../lib/HttpErrorManager.php";
 
 class Router {
     private static $routes = [];
@@ -10,7 +11,8 @@ class Router {
 
     public static function matchRoute(string $uri) {
         foreach (self::$routes as $route) {
-            if ($route->getURI() === $uri) {
+            $parsedRoute = parse_url($uri)["path"];
+            if ($route->getURI() === $parsedRoute) {
                 $match = $route;
                 break;
             }
@@ -19,7 +21,7 @@ class Router {
             $match->executeController();
         }
         else {
-            echo "not found";
+            HttpErrorManager::redirectError("404");
         }
     }
 }
