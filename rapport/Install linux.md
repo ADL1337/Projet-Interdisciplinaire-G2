@@ -86,3 +86,11 @@ sudo systemctl enable mysqld
 sudo systemctl start mysqld.service
 ```
 
+- ssl 
+```bash
+sudo openssl genrsa -out server.key 2048
+sudo openssl req -new -key server.key -out server.csr
+openssl req -text -noout -in server.csr
+sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+```
+
