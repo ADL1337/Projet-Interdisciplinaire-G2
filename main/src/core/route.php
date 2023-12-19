@@ -29,9 +29,17 @@ class Route {
     }
 
     public function executeController() {
-        require_once __DIR__ . "/../controllers/" . $this->controller;
+        require_once __DIR__ . "/../controllers/" . $this->controller . ".php";
         call_user_func($this->controller . "::setRequest");
         call_user_func($this->controller . "::execute");
+    }
+
+    public function getUri() {
+        return $this->uri;
+    }
+
+    public function getMethods() {
+        return $this->methods;
     }
 }
 
