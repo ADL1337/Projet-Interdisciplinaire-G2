@@ -2,18 +2,16 @@
 
 class View {
     private static string $viewsDir = __DIR__ . "/../views/";
-    private static string $template = "template.php"; # We could change this to an instance attribute if we want to allow multiple templates
+    private static string $template = "template"; # We could change this to an instance attribute if we want to allow multiple templates
     private string $viewPath;
     private string $title;
 
     public function __construct(string $viewName, string $viewTitle) {
-        $this->viewPath = $this->getViewPath($viewName);
+        $this->viewPath = $viewName;
         $this->title = $viewTitle;
     }
 
     public function generateView(array $data) {
-        echo "generate";
-        var_dump($data);
         # Render the specific view with the necessary data
         $content = $this->renderView($this->viewPath, $data);
 
@@ -24,7 +22,6 @@ class View {
     }
 
     private function renderView(string $viewName, array $data) {
-        echo "<br>render => $viewName";
         if (file_exists($this->getViewPath($viewName))) {
             # Extract the variables for the views
             extract($data);
