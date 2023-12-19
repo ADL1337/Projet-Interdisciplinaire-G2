@@ -7,7 +7,7 @@ class View {
     private string $title;
 
     public function __construct(string $viewName, string $viewTitle) {
-        $this->viewName = $this->getViewPath($viewName);
+        $this->viewName = $viewName;
         $this->title = $viewTitle;
     }
 
