@@ -10,6 +10,11 @@ $router->addRoute(["GET"],
                    "HomeController");
 */
 
+# Test route
+$router->addRoute(["GET"],
+                  "/",
+                  "ErrorController");
+
 $router->matchRoute($_SERVER["REQUEST_URI"]);
 
 ?>

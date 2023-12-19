@@ -1,6 +1,6 @@
 <?php
 
-class Vue {
+class View {
     private static string $viewsDir = __DIR__ . "/../views/";
     private static string $template = "template.php"; # We could change this to an instance attribute if we want to allow multiple templates
     private string $viewPath;
