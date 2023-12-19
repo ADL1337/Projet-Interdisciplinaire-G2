@@ -11,9 +11,12 @@ $router->addRoute(["GET"],
 */
 
 # Test route
-$router->addRoute(["GET"],
-                  "/",
-                  "ErrorController");
+$router->addRoute(["GET"], "/", "admin");
+
+// $router->addRoute(["GET"],
+//                   "/",
+//                   "ErrorController");
+
 
 $router->matchRoute($_SERVER["REQUEST_URI"]);
 
