@@ -11,7 +11,7 @@ abstract class Controller {
     }
     
     # Main method that will execute the business logic
-    public abstract function execute();
+    public abstract static function execute();
 
     # Generic fetch function
     private static function _fetchAttribute($method, $key) {
