@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../core/controller.php";
-require_once __DIR__ . "/../core/view.php";
 require_once __DIR__ . "/../models/_BikeModel.php";
 
 class AdminBikeTypeAddController extends Controller {
@@ -10,11 +9,11 @@ class AdminBikeTypeAddController extends Controller {
             $res = BikeModel::addBikeType($typeLabel);
             if($res->rowCount() == 1){
                 header('Location: /listBikeType');
-                exit;
+                exit();
             }
         }
-        $view = new View("bike_type_add_preview", "Add one bike");
-        $vue = $view->generateView([]);
-        echo $vue;
+        $view = new View("bike_type_add_preview", "Add a bike");
+        $generatedView = $view->generateView([]);
+        echo $generatedView;
     }
 }

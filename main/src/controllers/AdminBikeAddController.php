@@ -1,8 +1,7 @@
 <?php
 require_once __DIR__ . "/../core/controller.php";
-require_once __DIR__ . "/../core/view.php";
 require_once __DIR__ . "/../models/_BikeModel.php";
-require_once __DIR__ . "/ErrorController.php";
+require_once __DIR__ . "/../lib/HttpErrorManager.php";
 
 class AdminBikeAddController extends Controller {
     public static function execute(){
@@ -13,15 +12,13 @@ class AdminBikeAddController extends Controller {
             if(is_int($type) && is_int($size) && preg_match("/^[a-zA-Zâàêéèëïîï\ ]{1,}$/", $color) == 1){
                 $res = BikeModel::addBike($type, $color, $size);
                 if($res == false){
-                    ErrorController::setError(500);
-                    exit;
+                    HttpErrorManager::redirectError("500");
                 } else {
                     header('Location: /listBikeType');
-                    exit;
+                    exit();
                 }
             }
-            ErrorController::setError(500);
-            exit;
+            HttpErrorManager::redirectError("500");
         }
         $bikeTypes = BikeModel::getBikeTypes();
         ob_start();
@@ -32,10 +29,10 @@ class AdminBikeAddController extends Controller {
         }
         $listBikeTypes = ob_get_clean();
         $view = new View("bike_add_preview", "Add one bike");
-        $test = $view->generateView([
+        $generatedView = $view->generateView([
             "listBikeTypes" => $listBikeTypes,
         ]);
-        echo $test;
+        echo $generatedView;
     }
 }
 

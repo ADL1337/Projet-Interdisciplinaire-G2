@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../core/controller.php";
-require_once __DIR__ . "/../core/view.php";
 require_once __DIR__ . "/../models/_BikeModel.php";
 
 class AdminBikeTypeListController extends Controller {
@@ -24,10 +23,10 @@ class AdminBikeTypeListController extends Controller {
         <?php
         $bikeTypeList = ob_get_clean();
 
-        $view = new View("bike_type_list_preview", "list all the bike's types");
-        $vue = $view->generateView([
+        $view = new View("bike_type_list_preview", "Bike Types");
+        $generatedView = $view->generateView([
             "bikeTypeList" => $bikeTypeList
         ]);
-        echo $vue;
+        echo $generatedView;
     }
 }
