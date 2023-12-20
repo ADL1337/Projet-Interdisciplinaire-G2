@@ -5,6 +5,7 @@ abstract class Model {
 
     private static $db;
 
+    # Generic method to execute a request
     protected static function executeRequest(string $sql, array $params=null) {
         # Lazy loading to delay database connection until time of request (we don't want to connect if we don't make a request)
         self::setDatabase();
@@ -20,6 +21,7 @@ abstract class Model {
         return $res;
     }
     
+    # Method to initialize the database connection
     private static function setDatabase() {
         if (self::$db === null) {
             # If db is not set, initialize it with the configuration
