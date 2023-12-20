@@ -12,4 +12,5 @@
     <option value="3">Adult</option>
 </select>
 <input type="text" name="color" placeholder="The color of the bike">
+<input type="submit" value="Add bike">
 </form>
