@@ -11,7 +11,8 @@ $router->addRoute(["GET"],
 */
 
 # Test route
-$router->addRoute(["GET"], "/", "admin");
+$router->addRoute(["GET"], "/", "LoginController");
+#$router->addRoute(["GET"],"/boubou", "LoginController");
 
 // $router->addRoute(["GET"],
 //                   "/",
