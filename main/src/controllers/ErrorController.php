@@ -20,18 +20,12 @@ class ErrorController extends Controller {
     }
     
     # Method that sets the error code and message for the error view
-    public static function setError($errorCode=null) {
-        if (!isset($errorCode)) {
-            self::$errorCode = (string) http_response_code();
+    public static function setError($errorCode) {
+        if (!HttpErrorManager::isValidErrorCode($errorCode)) {
+            HttpErrorManager::redirectError();
         }
-        /* Comments are because idk if I should redirect to 404 if error code is invalid
-        elseif (!HttpErrorManager::isValidErrorCode($errorCode)) { # if error code is not valid we redirect to 404
-            HttpErrorManager::redirectError("404");
-        }
-        */
         else {
             self::$errorCode = HttpErrorManager::sanitizeErrorCode($errorCode);   
-            #self::$errorCode = $errorCode;   
         }
         self::$errorMessage = HttpErrorManager::getErrorMessage(self::$errorCode);
     }
