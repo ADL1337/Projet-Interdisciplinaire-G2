@@ -10,6 +10,7 @@ class AdminBikeTypeAddController extends Controller {
             $res = BikeModel::addBikeType($typeLabel);
             if($res->rowCount() == 1){
                 header('Location: /listBikeType');
+                exit;
             }
         }
         $view = new View("bike_type_add_preview", "Add one bike");
