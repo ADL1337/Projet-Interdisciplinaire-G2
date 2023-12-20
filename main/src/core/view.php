@@ -1,43 +1,68 @@
 <?php
 
 class View {
-    private static string $viewsDir = __DIR__ . "/../views/";
-    private static string $templateName = "template"; # We could change this to an instance attribute if we want to allow multiple templates
-    private string $viewName;
-    private string $title;
+    private static string $viewsDir = __DIR__ . "/../views/"; # Path to the views directory
+    private string $templateName; # Name of the template (default: "template")
+    private string $viewName; # Filename of the view
+    private string $title; # Title of the page
 
-    public function __construct(string $viewName, string $viewTitle) {
+    private static function getViewsDir() {
+        return self::$viewsDir;
+    }
+    
+    private static function getTemplatesDir() {
+        return self::getViewsDir() . "templates/";
+    }
+    
+    private static function _getFilepath(string $directoryPath, string $filename, string $fileExtension=".php") {
+        return $directoryPath . $filename . $fileExtension;
+    }
+
+    private function getViewPath() {
+        return self::_getFilepath(self::getViewsDir(), $this->viewName);
+    }
+
+    private function getTemplatePath() {
+        return self::_getFilepath(self::getTemplatesDir(), $this->templateName);
+    }
+
+    public function __construct(string $viewName, string $viewTitle, string $templateName="template") {
         $this->viewName = $viewName;
         $this->title = $viewTitle;
+        $this->templateName = $templateName;
     }
 
     public function generateView(array $data) {
         # Render the specific view with the necessary data
-        $content = $this->renderView($this->viewName, $data);
+        $content = $this->renderView($data);
 
-        # Render the template view 
-        $view = $this->renderView(self::$templateName, array("title" => $this->title,
-                                                         "content" => $content));
+        # Render the template
+        $view = $this->renderTemplate(array("title" => $this->title,
+                                            "content" => $content));
         return $view;
     }
 
-    private function renderView(string $viewName, array $data) {
-        if (file_exists($this->getViewPath($viewName))) {
-            # Extract the variables for the views
+    private function renderView(array $data) {
+        return self::_genericRender(self::getViewPath(), $data);
+    }
+
+    private function renderTemplate(array $data) {
+        return self::_genericRender(self::getTemplatePath(), $data);
+    }
+
+    private static function _genericRender(string $filepath, array $data) {
+        if (file_exists($filepath)) {
+            # Extract the variables for the target
             extract($data);
 
-            # Output buffering to store the rendered views
+            # Output buffering to store the render
             ob_start();
-            include $this->getViewPath($viewName);
+            include $filepath;
             return ob_get_clean();
         }
         else {
             return false;
         }
-    }
-
-    private function getViewPath(string $viewName) {
-        return self::$viewsDir . $viewName . ".php";
     }
 }
 
