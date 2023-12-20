@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../core/controller.php";
-require_once __DIR__ . "/../core/view.php";
 require_once __DIR__ . "/../models/_BikeModel.php";
 
 class AdminBikeListController extends Controller {
@@ -22,10 +21,10 @@ class AdminBikeListController extends Controller {
         <?php
         $listBike = ob_get_clean();
         $view = new View("bike_list_preview", "Bike management");
-        $test = $view->generateView([
+        $generatedView = $view->generateView([
             "listBike" => $listBike,
         ]);
-        echo $test;
+        echo $generatedView;
     }
 }
 

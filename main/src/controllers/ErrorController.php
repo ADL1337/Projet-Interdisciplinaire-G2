@@ -16,8 +16,9 @@ class ErrorController extends Controller {
 
     private static function showError() {
         $view = new View("error", self::$errorCode . " " . self::$errorMessage);
-        echo $view->generateView(["errorMessage" => self::$errorMessage,
-                                  "errorCode" => self::$errorCode]);
+        $generatedView = $view->generateView(["errorMessage" => self::$errorMessage,
+                                              "errorCode" => self::$errorCode]);
+        echo $generatedView;
     }
     
     # Method that sets the error code and message for the error view
