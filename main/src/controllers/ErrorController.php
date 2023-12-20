@@ -10,6 +10,7 @@ class ErrorController extends Controller {
     public static function execute() {
         self::setRequest();
         self::setError(self::fetchGET('code'));
+        HttpErrorManager::setHttpResponseCode(self::$errorCode);
         self::showError(HttpErrorManager::getErrorMessage(self::$errorCode));
     }
 
