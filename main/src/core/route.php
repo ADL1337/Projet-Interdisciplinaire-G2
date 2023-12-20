@@ -34,7 +34,7 @@ class Route {
         call_user_func($this->controller . "::execute");
     }
 
-    public function getUri() {
+    public function getURI() {
         return $this->uri;
     }
 
