@@ -8,10 +8,15 @@ $router->addRoute(["GET"],
                   "ErrorController");
 
 $router->addRoute(["GET"], "/", "ErrorController");
-$router->addRoute(["GET"], "/getBikes", "AdminBikeListController");
-$router->addRoute(["GET"], "/addBike", "AdminBikeAddController");
+$router->addRoute(["GET", "POST"], "/addBike", "AdminBikeAddController");
+$router->addRoute(["GET"], "/listBike", "AdminBikeListController");
 $router->addRoute(["GET", "POST"], "/addBikeType", "AdminBikeTypeAddController");
 $router->addRoute(["GET"], "/listBikeType", "AdminBikeTypeListController");
+$router->addRoute(["GET"], "/bikeManagement", "AdminBikeController");
+$router->addRoute(["GET"], "/admin", "AdminController");
+
+$router->addRoute(["GET"], "/reservationConfirmation", "AdminReservationController");
+$router->addRoute(["GET"], "/statistics", "AdminStatisticController");
 
 // $router->addRoute(["GET"],
 //                   "/",
