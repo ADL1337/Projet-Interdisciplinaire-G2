@@ -21,6 +21,7 @@ abstract class Controller {
                 return self::$request[$method][$key];
             }
         }
+        return null;
     }
 
     # Fetch GET attribute

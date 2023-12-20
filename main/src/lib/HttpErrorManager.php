@@ -3,7 +3,6 @@
 class HttpErrorManager {
     private static string $defaultErrorCode = "500";
     private static array $errorCodes = [ # Most relevant error codes
-        "200" => "OK",
         "401" => "Unauthorized",
         "404" => "Not Found",
         "500" => "Internal Server Error"
@@ -15,7 +14,10 @@ class HttpErrorManager {
     }
 
     # Method to verify an error code is valid
-    public static function isValidErrorCode(string $errorCode) {
+    public static function isValidErrorCode(string $errorCode=null) {
+        if (!isset($errorCode)) {
+            return false;
+        }
         if (key_exists($errorCode, self::$errorCodes)) {
             return true;
         }
@@ -30,14 +32,10 @@ class HttpErrorManager {
         return self::$defaultErrorCode;
     }
 
-    public static function redirectError(string $errorCode) {
-        if (self::isValidErrorCode($errorCode)) {
-            http_response_code(self::sanitizeErrorCode($errorCode));
-            header("Location: error?code=" . self::sanitizeErrorCode($errorCode));
-        }
-        else {
-            header("Location: error?code=404");
-        }
+    public static function redirectError(string $errorCode="") {
+        $errorCode = self::sanitizeErrorCode($errorCode);
+        http_response_code($errorCode);
+        header("Location: error?code=$errorCode");
         exit();
     }
 }
