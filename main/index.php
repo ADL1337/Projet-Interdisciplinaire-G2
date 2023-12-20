@@ -11,7 +11,11 @@ $router->addRoute(["GET"],
 */
 
 # Test route
-$router->addRoute(["GET"], "/", "admin");
+$router->addRoute(["GET"], "/", "ErrorController");
+$router->addRoute(["GET"], "/getBikes", "AdminBikeListController");
+$router->addRoute(["GET"], "/addBike", "AdminBikeAddController");
+$router->addRoute(["GET", "POST"], "/addBikeType", "AdminBikeTypeAddController");
+$router->addRoute(["GET"], "/listBikeType", "AdminBikeTypeListController");
 
 // $router->addRoute(["GET"],
 //                   "/",
