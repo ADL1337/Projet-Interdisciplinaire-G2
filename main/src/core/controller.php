@@ -27,13 +27,25 @@ abstract class Controller {
     }
 
     # Fetch GET attribute
-    protected static function getAttribute($key) {
+    protected static function fetchGET($key) {
         return self::_fetchAttribute("GET", $key);
     }
 
     # Fetch POST attribute
-    protected static function postAttribute($key) {
+    protected static function fetchPOST($key) {
         return self::_fetchAttribute("POST", $key);
+    }
+
+    protected static function isSetPOST($key) {
+        return self::_isSetGeneric(self::$request["POST"], $key);
+    }
+
+    protected static function isSetGET($key) {
+        return self::_isSetGeneric(self::$request["GET"], $key);
+    }
+
+    protected static function _isSetGeneric(array $list, $key) {
+        return isset($list, $key);
     }
 }
 
