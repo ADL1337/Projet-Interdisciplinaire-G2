@@ -1,40 +1,48 @@
 <?php
 require_once __DIR__ . '/../core/controller.php';
-require_once __DIR__ . '/../models/login_model.php';
+require_once __DIR__ . '/../models/LoginModel.php';
 
-class LoginController extends Controller{
-    public static function execute(){
-        $view = new View('login', 'login');
-            if ((self::$requestMethod == "POST") && self::isSetPOST('user_email') && self::isSetPOST('user_password')){
-                $user_email=self::fetchPOST('user_email');
-                $user_password=self::fetchPOST('user_password');
-                if ($_POST['user_email'] == false && $_POST['user_password'] == false){
-                    HttpErrorManager::redirectError('401');
-                }
-                elseif (($_POST['user_email'] == true && $_POST['user_password'] == false) or ($_POST['user_email'] == false && $_POST['user_password'] == true)){
-                    HttpErrorManager::redirectError('401');
-                }
-                elseif ($_POST['user_email'] == true && $_POST['user_password'] == true){
-                    self::checkUserDb($user_email, $user_password);
+class LoginController extends Controller {
+    public static function execute() {
+        $params = ["user_email", "user_password"];
+
+        # Verify if all the above parameters are set in the POST request variables
+        if (self::verifyParamsPOST($params)) {
+            # Data from the login form
+            $user_email=self::fetchPOST("user_email");
+            $user_password=self::fetchPOST("user_password");
+
+            if (LoginModel::isUserInDB($user_email, $user_password) === true) {
+                $res = LoginModel::getUser($user_email);
+                $user = $res->fetch();
+                if (password_verify($user_password, $user["user_password"])) {
+                    $userAttributes = [
+                        "user_id" => $user["user_id"],
+                        "user_lastname" => $user["user_lastname"],
+                        "user_firstname" => $user["user_firstname"],
+                        "user_admin" => $user["user_admin"],
+                        "user_email" => $user["user_email"],
+                        "user_reservation" => $user["user_reservation"]
+                    ];
+                    SessionManager::setVariables($userAttributes); # We use the session manager to make SURE the data is consistent
+                    if (SessionManager::get("user_admin") === true) {
+                        header("Location: /admin"); # If admin, show admin page
+                        exit();
+                    }
+                    elseif (SessionManager::get("user_admin") === false) {
+                        header("Location: /user"); # If not admin, show user page
+                        exit();
+                    }
+                    else { # Just in case
+                        HttpErrorManager::redirectInternalError();
+                    }
                 }
             }
-            echo $view->generateView([]);
         }
-    private static function checkUserDb(string $user_email, string $user_password){
-        $res = LoginModel::getLogin($user_email);
-        $fetchvalue = $res->fetch();
-        if (isset ($fetchvalue) AND $fetchvalue != false){
-            if (password_verify($user_password, $fetchvalue['user_password'])){
-                $_SESSION['user_admin']=$fetchvalue['user_admin'];
-                $_SESSION['user_id']=$fetchvalue['user_id'];
-                if ($fetchvalue['useradmin'] == true){
-                    header('Location: /admin');
-                }
-            }
-        }
+        # If GET Request, POST params, or user is not in DB, render login page
+        $view = new View("login", "login");
+        $generatedView = $view->generateView([]);
+        echo $generatedView;
     }
-
-
-        
 }
 ?>
