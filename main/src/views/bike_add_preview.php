@@ -11,5 +11,5 @@
     <option value="2">Teenager</option>
     <option value="3">Adult</option>
 </select>
-<input type="text" name="color" placeholder="color">
+<input type="text" name="color" placeholder="The color of the bike">
 </form>
