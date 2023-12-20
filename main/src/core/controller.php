@@ -47,6 +47,14 @@ abstract class Controller {
     protected static function _isSetGeneric(array $list, $key) {
         return isset($list, $key);
     }
+
+    protected static function isPostRequest() {
+        return self::$requestMethod === "POST";
+    }
+    
+    protected static function isGetRequest() {
+        return self::$requestMethod === "GET";
+    }
 }
 
 ?>
