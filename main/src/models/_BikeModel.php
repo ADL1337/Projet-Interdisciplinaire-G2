@@ -11,4 +11,9 @@ class BikeModel extends Model {
         $sql = "SELECT `type`.`type_name`, `type`.`type_id` FROM `type`";
         return self::executeRequest($sql);
     }
+
+    public static function addBikeType($typeLabel){
+        $sql = "INSERT INTO `type` (`type_name`) VALUES (?)";
+        return self::executeRequest($sql, [$typeLabel]);
+    }
 }
