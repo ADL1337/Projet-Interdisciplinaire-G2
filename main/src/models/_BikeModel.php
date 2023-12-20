@@ -16,4 +16,22 @@ class BikeModel extends Model {
         $sql = "INSERT INTO `type` (`type_name`) VALUES (?)";
         return self::executeRequest($sql, [$typeLabel]);
     }
+
+    public static function addBike($bikeType, $bikeColor, $bikeSize){
+        $types = self::getBikeTypes();
+        $typeExist = false;
+        while($type = $types->fetch()){
+            if($type['type_id'] == $bikeType){
+                $typeExist = true;
+                break;
+            }
+        }
+        if($typeExist){
+            $sql = "INSERT INTO `bike`(`bike_color`,`bike_size`,`bike_type`, `bike_purchase_date`) VALUES (?, ?, ?, ?)";
+            $t = self::executeRequest($sql, [$bikeColor,$bikeSize,$bikeType, date("Y-n-j")]);
+            return $t;
+        } else {
+            return false;
+        }
+    }
 }
