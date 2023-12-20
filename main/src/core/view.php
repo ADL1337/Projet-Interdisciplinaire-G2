@@ -33,8 +33,6 @@ class View {
     }
 
     public function generateView(array $data) {
-        echo "generate";
-        var_dump($data);
         # Render the specific view with the necessary data
         $content = $this->renderView($data);
 
