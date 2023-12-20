@@ -27,7 +27,6 @@ class AdminBikeListController extends Controller {
         ]);
         echo $test;
     }
-    public static function g(){}
 }
 
 ?>
