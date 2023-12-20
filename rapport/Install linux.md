@@ -6,7 +6,17 @@ sudo systemctl enable httpd.service
 - Dans /etc/httpd/conf httpd.conf 
 	- modifier DocumentRoot "/web" 
 		- en desous rajouter ServerName www.isims.park
-		- 
+		- dans <Directory "/web">
+			- supp tout les Rewrite
+			- remplacer par 
+```bash
+RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !\.css$
+    RewriteCond %{REQUEST_FILENAME} !\.ttf$
+    RewriteCond %{REQUEST_FILENAME} !\.svg$
+    RewriteRule . index.php [L]
+```
 - dans /etc/selinux 
 	- Modifier SELINUX = disable
 
@@ -69,12 +79,12 @@ WantedBy=default.target
 
 - php
 ```bash
+sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm[]()
+sudo dnf module reset php
 sudo dnf module enable php:8.1
-sudo dnf install php
 sudo dnf install php php-ldap
 sudo dnf install php-mysqlnd
 sudo dnf intall mod_ssl
-sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm[]()
 sudo systemctl restart httpd.service
 ```
 
@@ -92,5 +102,41 @@ sudo openssl genrsa -out server.key 2048
 sudo openssl req -new -key server.key -out server.csr
 openssl req -text -noout -in server.csr
 sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+```
+	- modif /etc/httpd/conf httpd.conf 
+
+-  Key 
+	- termius > paramètres > generate key > copy puplic key > /home/admin/.ssh/authorized_keys > paste key 
+	-  /etc/ssh/ssh_config.d/sshd_config > uncomment # PermitRootLogin and PubkeyAuthentication yes
+
+- crontab 
+	- nouvelle partition 
+		```bash
+		sudo fdisk -l
+		sudo fdisk /dev/nvme0n2
+		n
+		p
+
+
+
+
+		l
+		t
+		8e
+		w
+
+
+		mkdir backup 
+		mount /dev/nvme0n2 /backup
+		nano /etc/fstab 
+		/dev/nvme0n2    /backup ext4    defaults,noexec,nosuid  1 2
+		umount /backup
+		mount /backup 
+				
 ```
 
+- sauver la db
+	- mysqldump -u root --password="bC>K5j9AC/WyJ5v<t3/URt?S;rJJ2z" --databases isimsparkg2 > /backup/sql/db.sql
+	- rsync -vr /web/ /backup/web
+- 
