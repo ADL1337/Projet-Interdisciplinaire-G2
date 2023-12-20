@@ -4,9 +4,11 @@ require_once __DIR__ . "/view.php";
 abstract class Controller {
     # Static attribute because we don't need multiple instances of the same controllers
     protected static array $request;
+    protected static string $requestMethod;
 
     # We will use the GET and POST data
     public static function setRequest() {
+        self::$requestMethod = $_SERVER["REQUEST_METHOD"];
         self::$request['GET'] = $_GET;
         self::$request['POST'] = $_POST;
     }
