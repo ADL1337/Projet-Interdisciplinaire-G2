@@ -11,11 +11,13 @@ class LoginController extends Controller {
             # Data from the login form
             $user_email=self::fetchPOST("user_email");
             $user_password=self::fetchPOST("user_password");
-
-            if (LoginModel::isUserInDB($user_email, $user_password) === true) {
-                $res = LoginModel::getUser($user_email);
+            
+            $res = LoginModel::getUser($user_email);
+            if ($res->rowCount()=== 1) { # If the user_email matches a user in DB
                 $user = $res->fetch();
+                # Below is the database login, need to implement LDAP login (with empty password)
                 if (password_verify($user_password, $user["user_password"])) {
+                    # Set the attributes to store in session
                     $userAttributes = [
                         "user_id" => $user["user_id"],
                         "user_lastname" => $user["user_lastname"],

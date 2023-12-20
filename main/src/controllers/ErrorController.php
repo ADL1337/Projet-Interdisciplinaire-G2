@@ -3,6 +3,7 @@ require_once __DIR__ . "/../core/controller.php";
 require_once __DIR__ . "/../lib/HttpErrorManager.php";
 
 # Class that will be used to generate error views
+# DO NOT CALL THIS CLASS FOR ERROR HANDLING USE HttpErrorManager instead
 class ErrorController extends Controller {
     private static string $errorCode = "500";
     private static string $errorMessage;

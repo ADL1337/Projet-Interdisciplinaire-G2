@@ -18,7 +18,7 @@ abstract class Controller {
     # Main method that will execute the business logic (need to implement it in children classes)
     public abstract static function execute();
 
-    # Generic fetch function
+    # Generic fetch function (do not use)
     private static function _fetchAttribute($method, $key) {
         if (key_exists($method, self::$request)) {
             if (key_exists($key, self::$request[$method])) {
@@ -38,7 +38,8 @@ abstract class Controller {
         return self::_fetchAttribute("POST", $key);
     }
 
-    # Method that verifies that the target params are set in the target array (mainly for request params verification)
+    # Method that verifies that the target params are set in the target array
+    # Mainly for request params verification, do not use
     private static function _verifyParamsGeneric(array $array, array $params) {
         foreach ($params as $param) {
             if (!isset($array[$param])) {
@@ -64,7 +65,7 @@ abstract class Controller {
         self::_verifyParamsGeneric(self::$request["GET"], $params);
     }
     
-    # Method to verify if a key is set in an array
+    # Method to verify if a key is set in an array (do not use)
     private static function _isSetGeneric(array $list, $key) {
         return isset($list, $key);
     }
