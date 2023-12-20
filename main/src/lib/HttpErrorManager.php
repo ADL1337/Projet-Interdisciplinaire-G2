@@ -3,7 +3,9 @@
 class HttpErrorManager {
     private static string $defaultErrorCode = "500";
     private static array $errorCodes = [ # Most relevant error codes
+        "400" => "Bad Request",
         "401" => "Unauthorized",
+        "403" => "Forbidden",
         "404" => "Not Found",
         "500" => "Internal Server Error"
     ];
@@ -34,9 +36,29 @@ class HttpErrorManager {
 
     public static function redirectError(string $errorCode="") {
         $errorCode = self::sanitizeErrorCode($errorCode);
-        http_response_code($errorCode);
+        #http_response_code($errorCode);
         header("Location: error?code=$errorCode");
         exit();
+    }
+
+    public static function redirectUnauthorized() {
+        self::redirectError("401");
+    }
+
+    public static function redirectForbidden() {
+        self::redirectError("403");
+    }
+
+    public static function redirectNotFound() {
+        self::redirectError("404");
+    }
+
+    public static function redirectInternalError() {
+        self::redirectError("500");
+    }
+
+    public static function setHttpResponseCode(string $httpResponseCode) {
+        http_response_code($httpResponseCode);
     }
 }
 
