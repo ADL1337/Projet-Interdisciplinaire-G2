@@ -1,13 +1,10 @@
 <?php
 require_once __DIR__ . '/../core/controller.php';
-require_once __DIR__ . '/../views/login.php';
 require_once __DIR__ . '/../models/login_model.php';
 
 class LoginController extends Controller{
     public static function execute(){
-        #$view=new View('login', 'Login');
-        #$generate=$view->generateView([
-         #   '$test'=>'salut']);
+        $view = new View('login', 'login');
             if ((self::$requestMethod == "POST") && self::isSetPOST('user_email') && self::isSetPOST('user_password')){
                 $user_email=self::fetchPOST('user_email');
                 $user_password=self::fetchPOST('user_password');
@@ -21,8 +18,8 @@ class LoginController extends Controller{
                     self::checkUserDb($user_email, $user_password);
                 }
             }
+            echo $view->generateView([]);
         }
-
     private static function checkUserDb(string $user_email, string $user_password){
         $res = LoginModel::getLogin($user_email);
         $fetchvalue = $res->fetch();
@@ -30,9 +27,14 @@ class LoginController extends Controller{
             if (password_verify($user_password, $fetchvalue['user_password'])){
                 $_SESSION['user_admin']=$fetchvalue['user_admin'];
                 $_SESSION['user_id']=$fetchvalue['user_id'];
+                if ($fetchvalue['useradmin'] == true){
+                    header('Location: /admin');
+                }
             }
         }
     }
+
+
         
 }
 ?>
