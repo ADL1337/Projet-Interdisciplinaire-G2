@@ -22,11 +22,14 @@ abstract class Model {
     
     private static function setDatabase() {
         if (self::$db === null) {
-            # If db is not set, initialize it with the configuration
-            $dsn = Configuration::get("dsn");
-            $username = Configuration::get("user");
-            $password = Configuration::get("password");
-            self::$db = new PDO($dsn, $username, $password);
+            # If db is not set, initialize it
+            $dbType = Configuration::get("dbType");
+            $dbHost = Configuration::get("dbHost");
+            $dbName = Configuration::get("dbName");
+            $dbUser = Configuration::get("dbUser");
+            $dbPassword = Configuration::get("dbPassword");
+            $dsn = "$dbType:host=$dbHost;dbname=$dbName";
+            self::$db = new PDO($dsn, $dbUser, $dbPassword);
         }
     }
 
