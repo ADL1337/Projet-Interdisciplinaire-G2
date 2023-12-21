@@ -1,7 +1,7 @@
 <header>
     <nav>
         <div class="flex-space-between">
-            <div class="nav-logo"><img src="/res/img/nav_icon_velo.svg"></img></div>
+            <div class="nav-logo"><a href="/"><img src="/res/img/nav_icon_velo.svg"></img></a></div>
             <h1 class="nav-title">ISIMS PARK</h1>
             <div class="nav-user_info">
             <?php if (isset($_SESSION["user_firstname"])): ?>
