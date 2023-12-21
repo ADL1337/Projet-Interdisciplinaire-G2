@@ -56,7 +56,7 @@ abstract class Controller {
         if (!self::isPostRequest()) {
             return false;
         }
-        self::_verifyParamsGeneric(self::$request["POST"], $params);
+        return self::_verifyParamsGeneric(self::$request["POST"], $params);
     }
     
     # Verifies GET parameters
@@ -64,7 +64,7 @@ abstract class Controller {
         if (!self::isGetRequest()) {
             return false;
         }
-        self::_verifyParamsGeneric(self::$request["GET"], $params);
+        return self::_verifyParamsGeneric(self::$request["GET"], $params);
     }
     
     # Method to verify if a key is set in an array (do not use)

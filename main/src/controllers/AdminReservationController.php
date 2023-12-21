@@ -4,6 +4,7 @@ require_once __DIR__ . "/../models/_ReservationModel.php";
 
 class AdminReservationController extends Controller {
     public static function execute(){
+        PrivilegeMiddleware::requireAdmin();
         $view = new View("bike_management", "Bike management");
         $generatedView = $view->generateView([]);
         echo $generatedView;
