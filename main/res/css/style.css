@@ -211,3 +211,50 @@ div.form1 div.mb-51 input{
 div.form1 div.mb-51 input:hover{
     background-color: #F0A7A7;
 }
+
+body ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+#reservation {
+    width: 80%;
+    padding: 10px 45px;
+    background-color: #6a8eae;
+    margin: 100px;
+    color: #fff;
+    border-radius: 70px;
+    font-size: 1em;  
+    border: none;
+    border: 1px solid black;
+}
+
+body ul li {
+    width: 80%;
+    padding: 10px 45px;
+    background-color: #9bd1e5;
+    margin: 100px;
+    color: #fff;
+    border-radius: 70px;
+    font-size: 1em;  
+    border: none;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+body ul li:hover {
+    background-color: #FFFFFF   ;
+}
+
+#reservation:hover {
+    background-color: #FFFFFF   ;
+}
+ 
+ul li a {
+    text-decoration: none;
+    color:black;
+}
