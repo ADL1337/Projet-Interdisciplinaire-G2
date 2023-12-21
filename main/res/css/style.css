@@ -10,9 +10,8 @@ body {
     font-size: 1.2em;
 }
 
-.bg_admin {
-    background-image: url("/res/img/bg_admin.png");
-    background-size: cover;
+body:has(.bg_admin) {
+    background-image: linear-gradient( 109.6deg,  rgba(209,0,116,1) 11.2%, rgba(110,44,107,1) 91.1% );
 }
 
 .bg_user {
@@ -25,7 +24,7 @@ nav{
 }
 
 nav div.flex-space-between{
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -41,7 +40,7 @@ nav h1.nav-title{
     font-size: 2.1em;
     font-weight: normal;
     margin: 0;
-    margin-left: -25px;
+    margin-left: 90px;
 }
 
 nav div.nav-login{
@@ -49,11 +48,34 @@ nav div.nav-login{
     font-size: 1.2em;
 }
 
-div.form h2{
+nav div.right-side{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.log-button a{
+    background-color: #E89C9C;
+    padding: 10px 45px;
+    border-radius: 70px;
+    border: 1px solid black;
+    color: #fff;
+    font-size: 1em;
+    font-family: "NovaRound-Regular";
+    font-weight: normal;
+    line-height: 3rem;
+    text-decoration: none;
+}
+
+div.log-button a:hover{
+    background-color: #D41515;
+}
+
+h2{
     font-size: 1.8em;
     font-weight: normal;
     text-align: center;
-    margin: 10px 0 20px 0;
+    margin: 50px 0 20px 0;
 }
 
 div.form-container{
@@ -99,3 +121,93 @@ div.submit-button input:hover{
     background-color: #417e57;
 }
 
+div.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0px;
+}
+
+div.button{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+div.button a{
+    width: 250px;
+    background-color: #D41515;
+    padding: 10px 45px;
+    border: 1px solid black;
+    color: #fff;
+    font-size: 1em;
+    font-family: "NovaRound-Regular";
+    font-weight: normal;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 70px;
+}
+
+div.button a:hover{
+    background-color: #F0A7A7;
+}
+
+body{
+    height: 100vh;
+}
+
+
+div.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.addbike-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.form .addBike{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 10px 45px;
+    font-size: 1em;  
+    border: none;
+}
+
+div.mb-5{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; 
+}
+
+div.mb-5 input{
+    color: #fff;
+}
+
+div.mb-51{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+div.form1 div.mb-51 input{
+    padding: 10px;
+    font-size: 1em;
+    background-color: #D41515;
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+div.form1 div.mb-51 input:hover{
+    background-color: #F0A7A7;
+}
