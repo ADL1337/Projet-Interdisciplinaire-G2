@@ -6,10 +6,16 @@
             <div class="nav-user_info">
             <?php if (isset($_SESSION["user_firstname"])): ?>
                 <div class="nav-firstname">Welcome <?= $_SESSION["user_firstname"] ?></div>
-                <div class="nav-logout"><a href="logout">LOG OUT</a>
-            <?php else: ?>
-                <div class="nav-login"><a href="login">LOG IN</a>   
-            <?php endif; ?>
+                <div class="right-side">
+                    <div class="log-button">
+                        <a href="/logout">LOG OUT</a>
+                    </div>
+                <?php else: ?>
+                    <div class="log-button">
+                        <a href="/login">LOG IN</a>
+                    </div>
+                <?php endif; ?>
+                </div>
             </div>
         </div>
     </nav>
