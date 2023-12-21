@@ -2,6 +2,8 @@
 require_once __DIR__ . "/view.php";
 require_once __DIR__ . "/../lib/HttpErrorManager.php";
 require_once __DIR__ . "/../lib/SessionManager.php";
+require_once __DIR__ . "/../lib/RedirectManager.php";
+require_once __DIR__ . "/../lib/PrivilegeMiddleware.php";
 
 abstract class Controller {
     # Static attribute because we don't need multiple instances of the same controllers
