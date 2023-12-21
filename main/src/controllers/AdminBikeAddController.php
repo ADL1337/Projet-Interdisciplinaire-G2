@@ -2,9 +2,11 @@
 require_once __DIR__ . "/../core/controller.php";
 require_once __DIR__ . "/../models/_BikeModel.php";
 require_once __DIR__ . "/../lib/HttpErrorManager.php";
+require_once __DIR__ . "/../lib/PrivilegeMiddleware.php";
 
 class AdminBikeAddController extends Controller {
     public static function execute(){
+        PrivilegeMiddleware::requireAdmin();
         if(self::isPostRequest() && self::isSetPOST("bike_type") && self::isSetPOST("size") && self::isSetPOST("color")){
             $type = intval(self::fetchPOST("bike_type"));
             $size = intval(self::fetchPOST("size"));

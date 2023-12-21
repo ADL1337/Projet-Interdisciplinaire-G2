@@ -4,6 +4,7 @@ require_once __DIR__ . "/../models/_BikeModel.php";
 
 class AdminBikeListController extends Controller {
     public static function execute(){ 
+        PrivilegeMiddleware::requireAdmin();
         $bikes = BikeModel::getBikes();
         ob_start();
         ?>
