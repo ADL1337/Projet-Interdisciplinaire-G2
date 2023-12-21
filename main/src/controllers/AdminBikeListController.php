@@ -8,20 +8,20 @@ class AdminBikeListController extends Controller {
         $bikes = BikeModel::getBikes();
         ob_start();
         ?>
+        <div class="bg_admin"></div>
          <section class="reservation">
             <?php while($bike = $bikes->fetch()){
                 ?>
                 <div class="reservation_wrapped">
                     <div class="review">
                     <h2>Ready</h2>
-                            <div class="infos">
-                                <div class="infos">
-                                    <div class="li">Bike Type: <?= $bike["type_name"] ?></div>
-                                    <div class="li">Bike Color: <?= $bike["bike_color"] ?></div>
-                                    <div class="li">Bike Size: <?= $bike["bike_size"] ?></div>
-                                    <div class="opgg"><img class="img" src="res/img/bike_manual.svg"></div>
-                                </div>
-                            </div>
+                    <div class="infos">
+                        <div class="infos">
+                            <div class="li">Bike Type: <?= $bike["type_name"] ?></div>
+                            <div class="li">Bike Color: <?= $bike["bike_color"] ?></div>
+                            <div class="li">Bike Size: <?= $bike["bike_size"] ?></div>
+                            <div class="opgg"><img class="img" src="res/img/bike_manual.svg"></div>
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -36,5 +36,4 @@ class AdminBikeListController extends Controller {
         echo $generatedView;
     }
 }
-
 ?>
