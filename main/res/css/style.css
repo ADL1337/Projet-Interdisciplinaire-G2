@@ -226,7 +226,6 @@ div.reservation_wrapped{
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid black;
     margin: 15px;
 }
 
@@ -256,7 +255,6 @@ div.reservation_wrapped h2{
 }
 
 div.reservation_wrapped button{
-    border: 1px solid black;
     width: 100%;
 }
 
