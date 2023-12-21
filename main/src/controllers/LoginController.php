@@ -9,10 +9,10 @@ class LoginController extends Controller {
     public static function execute() {
         if (SessionManager::get('logged_in') === true) {
             if (SessionManager::get('user_admin') == "1") {
-                RedirectManager::redirect('/user');
+                RedirectManager::redirect('/admin');
             }
             else {
-                RedirectManager::redirect('/admin');
+                RedirectManager::redirect('/user');
             }
         }
         $params = ["user_email", "user_password"];
