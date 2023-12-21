@@ -22,6 +22,7 @@ $router->addRoute(["GET", "POST"], "/addBikeType", "AdminBikeTypeAddController")
 $router->addRoute(["GET"], "/listBikeType", "AdminBikeTypeListController");
 $router->addRoute(["GET"], "/bikeManagement", "AdminBikeController");
 $router->addRoute(["GET"], "/admin", "AdminController");
+$router->addRoute(["GET"], "/user", "UserController");
 
 $router->addRoute(["GET"], "/reservationConfirmation", "AdminReservationController");
 $router->addRoute(["GET"], "/statistics", "AdminStatisticController");
