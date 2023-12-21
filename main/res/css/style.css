@@ -245,11 +245,11 @@ div.form1 div.mb-51 input:hover{
 
 }
 
-body ul li:hover {
+.button_user:hover {
     background-color: #FFFFFF   ;
 }
 
-but:hover {
+#reservation:hover {
     background-color: #FFFFFF   ;
 }
  
