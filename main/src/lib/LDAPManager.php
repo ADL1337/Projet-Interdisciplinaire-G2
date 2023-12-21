@@ -1,18 +1,16 @@
 <?php
-
-use LDAP\Connection;
-use PSpell\Config;
-
 require_once __DIR__ . "/../core/configuration.php";
 
 class LDAPManager {
-    private static Connection $ldap_connection;
+    private static $ldap_connection;
 
+    # Try username and password agains the LDAP server to see if login credentials are correct
     private static function loginFromUsername(string $username, string $password) {
         $ldap_bind = self::bind($username, $password);
         return $ldap_bind;
     }
 
+    # Todo, handle case where email is invalid (we pray that it's valid rn)
     private static function usernameFromEmail(string $email) {
         self::adminBind();
         $email_filter = "(&(objectClass=user)(mail=$email))";
@@ -20,23 +18,32 @@ class LDAPManager {
         return @$ldap_entries[0]["samaccountname"][0];
     }
 
+    # true if user in AD has email and password given else false
     public static function loginFromEmail(string $email, string $password) {
         $username = self::usernameFromEmail($email);
         return self::loginFromUsername($username, $password);
     }
 
+    # get the entries for a specific filter
     private static function getEntries(string $filter) {
-        return ldap_get_entries(self::getConnection(), ldap_search(self::getConnection(), self::getBaseDN(), $filter));
+        $ldap_connection = self::getConnection();
+        $base_dn = self::getBaseDN();
+        $ldap_search = ldap_search($ldap_connection, $base_dn, $filter);
+        return ldap_get_entries($ldap_connection, $ldap_search);
     }
 
     # Bind to LDAP with the admin account (for searching)
     private static function adminBind() {
-        return @ldap_bind(self::getConnection(), self::getLDAPUsername(), self::getPassword());
+        $password = self::getPassword();
+        $username = self::getLDAPUsername();
+        return self::bind($username, $password);
     }
 
-    # Username should not be a LDAP User
+    # Username should not be a "normal" username
     private static function bind(string $username, string $password) {
-        return @ldap_bind(self::getConnection(), self::ldapUserFromUsername($username), $password);
+        $dn = self::ldapUserFromUsername($username);
+        $ldap_connection = self::getConnection();
+        return @ldap_bind($ldap_connection, $dn, $password);
     }
 
     # Get the domain name from config
@@ -51,7 +58,10 @@ class LDAPManager {
 
     # Get the base DN used for searching
     private static function getBaseDN() {
-        return 'dc=' . self::getDN() . 'dc=' . self::getTLD();
+        #return Configuration::get('base_dn');
+        $dn = self::getDN();
+        $tld = self::getTLD();
+        return "dc=$dn,dc=$tld";
     }
 
     # Get the admin account LDAP username from config
@@ -66,13 +76,17 @@ class LDAPManager {
 
     # Format a username to be able to bind
     private static function ldapUserFromUsername(string $username) {
-        return self::getDN() . '\\' . $username;
+        $dn = self::getDN();
+        return "$dn\\$username";
     }
 
     # Set the connection
     private static function setConnection() {
         if (!isset(self::$ldap_connection) || self::$ldap_connection === false) {
-            self::$ldap_connection = ldap_connect(self::getServer());
+            $ldap_connection = ldap_connect(self::getServer());
+            ldap_set_option($ldap_connection, LDAP_OPT_PROTOCOL_VERSION, 3);
+            ldap_set_option($ldap_connection, LDAP_OPT_REFERRALS, 0);
+            self::$ldap_connection = $ldap_connection;
         }
     }
 
@@ -82,10 +96,12 @@ class LDAPManager {
         return self::$ldap_connection;
     }
 
-    # LDAP Server address for connecting
+    # LDAP Server address for connecting 
     private static function getServer() {
-        return "LDAP://" . Configuration::get('dn') . Configuration::get('tld');
+        $dn = self::getDN();
+        $tld = self::getTLD();
+        return "LDAP://$dn.$tld";
     }
-}   
+}
 
 ?>
