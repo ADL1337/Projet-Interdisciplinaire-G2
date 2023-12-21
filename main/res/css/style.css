@@ -215,45 +215,31 @@ div.form1 div.mb-51 input:hover{
 #user{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     text-decoration: none;
+    justify-content: center;
 }
 
-#reservation {
-    width: 80%;
-    padding: 10px 45px;
-    background-color: #6a8eae;
-    margin: 100px;
-    color: #fff;
-    border-radius: 70px;
-    font-size: 1em;  
-    border: none;
-    border: 1px solid black;
-}
 
 .button_user {
-    width: 80%;
-    padding: 10px 45px;
+    margin: 100px 50px;
     background-color: #9bd1e5;
-    margin: 100px;
-    color: #fff;
+    padding: 10px 45px;
     border-radius: 70px;
-    font-size: 1em;  
-    border: none;
     border: 1px solid black;
-    text-align: center;
-
+    color: #fff;
+    font-size: 1em;
+    font-family: "NovaRound-Regular";
+    font-weight: normal;
+    line-height: 3rem;
+    text-decoration: none;
 }
+
 
 .button_user:hover {
-    background-color: #FFFFFF   ;
+    background-color: #6a8eae  ;
 }
 
-#reservation:hover {
-    background-color: #FFFFFF   ;
-}
- 
 .button_user a {
     text-decoration: none;
-    color:black;
+    color:black
 }

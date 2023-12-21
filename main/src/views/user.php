@@ -1,5 +1,5 @@
 <div id="user">
-    <div class="button_user" id="reservation">
+    <div class="button_user" >
         <a href="/reservation">Reservation</a>      
     </div>
     <div class="button_user">
