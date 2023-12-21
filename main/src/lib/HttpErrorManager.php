@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/RedirectManager.php";
 
 class HttpErrorManager {
     private static string $defaultErrorCode = "500";
@@ -36,9 +37,7 @@ class HttpErrorManager {
 
     public static function redirectError(string $errorCode="") {
         $errorCode = self::sanitizeErrorCode($errorCode);
-        #http_response_code($errorCode);
-        header("Location: error?code=$errorCode");
-        exit();
+        RedirectManager::redirect("error?code=$errorCode");
     }
 
     public static function redirectUnauthorized() {
