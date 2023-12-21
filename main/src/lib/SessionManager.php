@@ -24,7 +24,7 @@ class SessionManager {
 
     public static function get($key) {
         self::start();
-        self::_get($key);
+        return self::_get($key);
     }
 
     public static function isSet($key) {

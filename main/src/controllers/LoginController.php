@@ -24,14 +24,15 @@ class LoginController extends Controller {
                         "user_firstname" => $user["user_firstname"],
                         "user_admin" => $user["user_admin"],
                         "user_email" => $user["user_email"],
-                        "user_reservation" => $user["user_reservation"]
+                        "user_reservation" => $user["user_reservation"],
+                        "logged_in" => true,
                     ];
                     SessionManager::setVariables($userAttributes); # We use the session manager to make SURE the data is consistent
-                    if (SessionManager::get("user_admin") === true) {
+                    if (SessionManager::get("user_admin") == "1") {
                         header("Location: /admin"); # If admin, show admin page
                         exit();
                     }
-                    elseif (SessionManager::get("user_admin") === false) {
+                    elseif (SessionManager::get("user_admin") == "0") {
                         header("Location: /user"); # If not admin, show user page
                         exit();
                     }
@@ -39,6 +40,8 @@ class LoginController extends Controller {
                         HttpErrorManager::redirectInternalError();
                     }
                 }
+            } else {
+                echo "nope " . $res->rowCount();
             }
         }
         # If GET Request, POST params, or user is not in DB, render login page
