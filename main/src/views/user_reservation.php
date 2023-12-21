@@ -1,0 +1,3 @@
+<table>
+    <?= $reservations ?>
+</table>
