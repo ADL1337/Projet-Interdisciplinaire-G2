@@ -37,7 +37,7 @@ class HttpErrorManager {
 
     public static function redirectError(string $errorCode="") {
         $errorCode = self::sanitizeErrorCode($errorCode);
-        RedirectManager::redirect("error?code=$errorCode");
+        RedirectManager::redirect("/error?code=$errorCode");
     }
 
     public static function redirectUnauthorized() {
