@@ -1,11 +1,21 @@
 <?php
 require_once __DIR__ . '/../core/controller.php';
 require_once __DIR__ . '/../models/LoginModel.php';
+require_once __DIR__ . '/../lib/SessionManager.php';
+require_once __DIR__ . '/../lib/RedirectManager.php';
+require_once __DIR__ . '/../lib/LDAPManager.php';
 
 class LoginController extends Controller {
     public static function execute() {
+        if (SessionManager::get('logged_in') === true) {
+            if (SessionManager::get('user_admin') == "1") {
+                RedirectManager::redirect('/user');
+            }
+            else {
+                RedirectManager::redirect('/admin');
+            }
+        }
         $params = ["user_email", "user_password"];
-
         # Verify if all the above parameters are set in the POST request variables
         if (self::verifyParamsPOST($params)) {
             # Data from the login form
@@ -55,13 +65,7 @@ class LoginController extends Controller {
     }
 
     private static function loginLDAP($user_email, $user_password) {
-        $dn = Configuration::get("dn");
-        $tld = Configuration::get("tld");
-
-        $ldap_server = "LDAP://$dn.$tld";
-        $ldap_user = $user_email;
-
-        $ldap_connection = ldap_connect($ldap_server);
+        return LDAPManager::loginFromEmail($user_email, $user_password);
     }
 
     private static function loginDB($user_password, $password_hash) {
