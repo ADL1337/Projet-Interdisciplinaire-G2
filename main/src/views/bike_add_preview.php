@@ -1,4 +1,4 @@
-<div class="form1">
+<div class="form1 bg_admin">
     <h2>Add a Bike</h2>
     <div class="addbike-container">
         <form action="/addBike" method="post" class="addBike">
@@ -24,4 +24,5 @@
             </div>
         </form>
     </div>
+</div>
 </div>

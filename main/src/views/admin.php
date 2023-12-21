@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form bg_admin">
     <h2>Administration</h2>
     <div class="dashboard-container">
         <div class="button">

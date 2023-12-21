@@ -12,7 +12,6 @@
                     </div>
                 <?php else: ?>
                     <div class="log-button">
-                        <a href="/login">LOG IN</a>
                     </div>
                 <?php endif; ?>
                 </div>
