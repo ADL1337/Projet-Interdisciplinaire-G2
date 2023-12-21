@@ -46,8 +46,6 @@ class LoginController extends Controller {
                         HttpErrorManager::redirectInternalError();
                     }
                 }
-            } else {
-                echo "nope " . $res->rowCount();
             }
         }
         # If GET Request, POST params, or user is not in DB, render login page
