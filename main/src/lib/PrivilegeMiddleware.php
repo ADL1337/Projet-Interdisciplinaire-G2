@@ -7,7 +7,7 @@ class PrivilegeMiddleware {
         if (!SessionManager::isSet("logged_in") || SessionManager::get("logged_in") !== true) {
             HttpErrorManager::redirectUnauthorized();
         }
-        if(!SessionManager::isSet("user_admin") || SessionManager::get("user_admin") !== "1") {
+        if(!SessionManager::isSet("user_admin") || SessionManager::get("user_admin") != "1") {
             HttpErrorManager::redirectForbidden();
         }
     }
@@ -16,7 +16,7 @@ class PrivilegeMiddleware {
         if (!SessionManager::isSet("logged_in") || SessionManager::get("logged_in") !== true) {
             HttpErrorManager::redirectUnauthorized();
         }
-        if(!SessionManager::isSet("user_admin") || SessionManager::get("user_admin") !== "0") {
+        if(!SessionManager::isSet("user_admin") || SessionManager::get("user_admin") != "0") {
             HttpErrorManager::redirectForbidden();
         }
     }
