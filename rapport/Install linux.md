@@ -102,13 +102,12 @@ sudo openssl genrsa -out server.key 2048
 sudo openssl req -new -key server.key -out server.csr
 openssl req -text -noout -in server.csr
 sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-
 ```
 	- modif /etc/httpd/conf httpd.conf 
 
 -  Key 
 	- termius > paramètres > generate key > copy puplic key > /home/admin/.ssh/authorized_keys > paste key 
-	-  /etc/ssh/ssh_config.d/sshd_config > uncomment # PermitRootLogin and PubkeyAuthentication yes
+	-  /etc/ssh/sshd_config > uncomment # PermitRootLogin and PubkeyAuthentication yes
 
 - crontab 
 	- nouvelle partition 
@@ -136,7 +135,12 @@ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.
 				
 ```
 
-- sauver la db
+- sauvegardes
 	- mysqldump -u root --password="bC>K5j9AC/WyJ5v<t3/URt?S;rJJ2z" --databases isimsparkg2 > /backup/sql/db.sql
 	- rsync -vr /web/ /backup/web
-- 
+	- rsync -vr /etc/httpd/conf/httpd.conf /backup/config_de_base
+	- rsync -vr /etc/ssh/sshd_config  /backup/config_de_base/
+	- rsync -vr /home/admin/.ssh/authorized_keys   /backup/config_de_base/
+	- rsync -vr /etc/systemd/system/firewall.service  /backup/config_de_base/
+	- rsync -vr /etc/firewall.sh  /backup/config_de_base/
+	- rsync -vr /etc/selinux/config  /backup/config_de_base/
