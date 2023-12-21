@@ -1,4 +1,20 @@
+@font-face {
+    font-family: "NovaRound-Regular";
+    src: url("NovaRound-Regular.ttf");
+}
+  
 body {
+    font-family: "NovaRound-Regular";
     margin: 5px;
     padding: 5px;
+}
+
+.bg_admin {
+    background-image: url("/res/img/bg_admin.png");
+    background-size: cover;
+}
+
+.bg_user {
+    background-image: url("/res/img/bg_user.png");
+    background-size: cover;
 }
