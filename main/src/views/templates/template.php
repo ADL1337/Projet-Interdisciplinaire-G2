@@ -6,7 +6,8 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="/res/css/style.css">
 </head>
-<body>
+<body <?= isset($bgClass) ? "class=$bgClass": ""?>>
+    <?php require_once __DIR__ . "/_nav.php" ?>
     <?= $content ?>
 </body>
 </html>
