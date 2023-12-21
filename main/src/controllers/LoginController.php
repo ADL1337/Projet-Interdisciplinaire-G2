@@ -15,8 +15,14 @@ class LoginController extends Controller {
             $res = LoginModel::getUser($user_email);
             if ($res->rowCount()=== 1) { # If the user_email matches a user in DB
                 $user = $res->fetch();
+                if ($user["user_password"] === "") { # DB password empty we try LDAP
+                    $logged_in = self::loginLDAP($user_email, $user_password);
+                }
+                else { # DB password not empty we verify db hash and input password
+                    $logged_in = self::loginDB($user_password, $user["user_password"]);
+                }
                 # Below is the database login, need to implement LDAP login (with empty password)
-                if (password_verify($user_password, $user["user_password"])) {
+                if ($logged_in === true) {
                     # Set the attributes to store in session
                     $userAttributes = [
                         "user_id" => $user["user_id"],
@@ -28,12 +34,10 @@ class LoginController extends Controller {
                     ];
                     SessionManager::setVariables($userAttributes); # We use the session manager to make SURE the data is consistent
                     if (SessionManager::get("user_admin") === true) {
-                        header("Location: /admin"); # If admin, show admin page
-                        exit();
+                         RedirectManager::redirect("admin"); # If admin, show admin page
                     }
                     elseif (SessionManager::get("user_admin") === false) {
-                        header("Location: /user"); # If not admin, show user page
-                        exit();
+                         RedirectManager::redirect("user"); # If not admin, show user page
                     }
                     else { # Just in case
                         HttpErrorManager::redirectInternalError();
@@ -45,6 +49,20 @@ class LoginController extends Controller {
         $view = new View("login", "login");
         $generatedView = $view->generateView([]);
         echo $generatedView;
+    }
+
+    private static function loginLDAP($user_email, $user_password) {
+        $dn = Configuration::get("dn");
+        $tld = Configuration::get("tld");
+
+        $ldap_server = "LDAP://$dn.$tld";
+        $ldap_user = $user_email;
+
+        $ldap_connection = ldap_connect($ldap_server);
+    }
+
+    private static function loginDB($user_password, $password_hash) {
+        return password_verify($user_password, $password_hash);
     }
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/configuration.php";
+require_once __DIR__. "/../lib/HttpErrorManager.php";
 
 abstract class Model {
 
@@ -25,13 +26,18 @@ abstract class Model {
     private static function setDatabase() {
         if (self::$db === null) {
             # If db is not set, initialize it with the configuration
-            $dbType = Configuration::get("dbType");
-            $dbHost = Configuration::get("dbHost");
-            $dbName = Configuration::get("dbName");
-            $dbUser = Configuration::get("dbUser");
-            $dbPassword = Configuration::get("dbPassword");
-            $dsn = "$dbType:host=$dbHost;dbname=$dbName";
-            self::$db = new PDO($dsn, $dbUser, $dbPassword);
+            try {
+                $dbType = Configuration::get("dbType");
+                $dbHost = Configuration::get("dbHost");
+                $dbName = Configuration::get("dbName");
+                $dbUser = Configuration::get("dbUser");
+                $dbPassword = Configuration::get("dbPassword");
+                $dsn = "$dbType:host=$dbHost;dbname=$dbName";
+                self::$db = new PDO($dsn, $dbUser, $dbPassword);
+            }
+            catch (Exception $e) {
+                HttpErrorManager::redirectInternalError();
+            }
         }
     }
 
