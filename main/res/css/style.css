@@ -212,8 +212,7 @@ div.form1 div.mb-51 input:hover{
     background-color: #F0A7A7;
 }
 
-body ul{
-    list-style-type: none;
+#user{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -232,7 +231,7 @@ body ul{
     border: 1px solid black;
 }
 
-body ul li {
+.button_user {
     width: 80%;
     padding: 10px 45px;
     background-color: #9bd1e5;
@@ -250,11 +249,11 @@ body ul li:hover {
     background-color: #FFFFFF   ;
 }
 
-#reservation:hover {
+but:hover {
     background-color: #FFFFFF   ;
 }
  
-ul li a {
+.button_user a {
     text-decoration: none;
     color:black;
 }
