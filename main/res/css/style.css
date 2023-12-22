@@ -278,6 +278,7 @@ section.reservation {
     display: flex;
     flex-direction: row;
     margin: 15px;
+    padding: 50px;
 }
 
 div.reservation_wrapped img{
@@ -436,4 +437,8 @@ div.user-dashboard-container-wrapped{
 .user-label1 select{
     padding: 5px 20px;
     font-size: 1em;
+}
+
+.reservation_wrapped .infos .tab-reservation-list{
+    padding-bottom: 25px;
 }

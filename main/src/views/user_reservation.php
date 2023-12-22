@@ -1,6 +1,8 @@
 <table>
     <?= $reservations ?>
 </table>
-<div class="return">
-    <a href ="/login">Return to Dashboard</a>
-</div>
+<footer class="user">
+    <div class="return">
+        <a href ="/login">Return to Dashboard</a>
+    </div>
+</footer>
