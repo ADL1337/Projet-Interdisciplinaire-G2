@@ -29,6 +29,7 @@ $router->addRoute(["GET"], "/reservation", "UserReservationAddController");
 $router->addRoute(["GET"], "/reservationConfirmation", "AdminReservationController");
 $router->addRoute(["GET"], "/statistics", "AdminStatisticsController");
 $router->addRoute(["GET"], "/repair", "UserRepairController");
+$router->addRoute(["GET"], "/adminReparations", "AdminRepairController");
 
 // $router->addRoute(["GET"],
 //                   "/",
