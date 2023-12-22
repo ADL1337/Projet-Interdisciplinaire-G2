@@ -27,7 +27,7 @@ $router->addRoute(["GET"], "/reservationList", "UserReservationController");
 $router->addRoute(["GET"], "/reservation", "UserReservationAddController");
 
 $router->addRoute(["GET"], "/reservationConfirmation", "AdminReservationController");
-$router->addRoute(["GET"], "/statistics", "AdminStatisticController");
+$router->addRoute(["GET"], "/statistics", "AdminStatisticsController");
 
 // $router->addRoute(["GET"],
 //                   "/",
