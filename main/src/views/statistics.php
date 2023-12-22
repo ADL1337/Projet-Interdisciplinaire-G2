@@ -1,7 +1,11 @@
-<div class="statistics-container bg_admin">
-    <div class="container-title">Statistics</div>
-    <div class="container-content">
-        <div class="content-entry"><?= $totalBikesReserved ?></div>
-        <div class="content-entry"><?= $mostPopularBike ?></div>
+<section class="reservation bg_admin">
+    <div class="reservation_wrapped">
+        <div class="review">
+            <h2>Statistics</h2>
+            <div class="infos">
+                <div class="tab-reservation-list"><?= $totalBikesReserved ?></div>
+                <div class="tab-reservation-list"><?= $mostPopularBike ?></div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
