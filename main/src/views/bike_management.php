@@ -1,4 +1,4 @@
-<main>
+<main class="bg_admin">
     <div class="form bg_admin">
         <h2>Bike management</h2>
         <div class="dashboard-container">
