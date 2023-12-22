@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../core/controller.php";
 require_once __DIR__ . "/../models/_RepairModel.php";
+require_once __DIR__ . "/../models/_ReservationModel.php";
 
 class UserRepairController extends Controller {
     public static function execute(){
