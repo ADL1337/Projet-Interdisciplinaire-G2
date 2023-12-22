@@ -12,11 +12,11 @@ class UserReservationController extends Controller {
         ob_start();
         while($reservation = $userReservations->fetch()){
             ?>
-            <tr>
-                <td><?= $reservation["type_name"] ?></td>
-                <td><?= $reservation["reservation_start"] ?></td>
-                <td><?= $reservation["reservation_end"] ?></td>
-            </tr>
+            <div class="user-reservation-wrapped">
+                <div class="tab"><?= $reservation["type_name"] ?></div>
+                <div class="tab"><?= $reservation["reservation_start"] ?></div>
+                <div class="tab"><?= $reservation["reservation_end"] ?></div>
+            </div>
             <?php
         }
 

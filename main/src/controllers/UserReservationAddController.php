@@ -9,12 +9,10 @@ class UserReservationAddController extends Controller {
     public static function execute(){
         PrivilegeMiddleware::requireUser();
         if(self::isPostRequest() && self::isSetGET("date_from") && self::isSetGET("date_end") && self::isSetPOST("bike")){
-            echo "1";
             $bike = self::fetchPOST("bike");
             $dateFrom = self::fetchGET("date_from");
             $dateEnd = self::fetchGET("date_end");
             if(preg_match("/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/", $dateFrom) and preg_match("/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/", $dateEnd)){
-                echo "2";
                 if(BikeModel::doesBikeExist($bike)){
                     if(ReservationModel::reserveBike($bike, $dateFrom, $dateEnd, SessionManager::get("user_id"))){
                         header('Location: /reservationList');

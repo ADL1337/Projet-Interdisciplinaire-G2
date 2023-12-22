@@ -373,3 +373,67 @@ div.user-dashboard-container-wrapped{
     text-align: center;
     padding-bottom: 20px;
 }
+
+.user-reservation-wrapped{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user-reservation-wrapped .tab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-reservation-wrapped .user-label{
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-reservation-wrapped .tab{
+    padding-top: 40px;
+
+}
+
+.tab1{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user-reservation-wrapped .user-label input{
+    font-size: 1em;
+}
+
+.user-reservation-wrapped .user-label1 .user-submit input{
+    padding: 5px 20px;
+    font-size: 1em;
+}
+
+.user-label1{
+    padding-bottom: 25px;
+}
+
+.user-reservation-wrapped .tab1{
+    padding: 0;
+    margin: 0;
+}
+
+.user-reservation-wrapped .tab1 select, input{
+    font-size: 1em;
+    
+}
+
+.user-label1 input{
+    padding: 5px 20px;
+    font-size: 1em;
+}
+
+.user-label1 select{
+    padding: 5px 20px;
+    font-size: 1em;
+}
