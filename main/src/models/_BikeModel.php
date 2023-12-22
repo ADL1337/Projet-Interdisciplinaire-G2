@@ -34,4 +34,15 @@ class BikeModel extends Model {
             return false;
         }
     }
+
+    public static function getBikesForDate($from, $end){
+        $sql = "SELECT `bike`.`bike_id`, `bike`.`bike_color`, `bike`.`bike_size`, `type`.`type_name` from bike LEFT JOIN reservation on reservation.bike_id = bike.bike_id INNER JOIN `type` on `type`.`type_id` = `bike`.`bike_type` WHERE `reservation`.`reservation_start` > ? or `reservation`.`reservation_end` < ? or `reservation`.`reservation_id` is null";
+        return self::executeRequest($sql, [$from, $end]);
+    }
+
+    public static function doesBikeExist($id){
+        $sql = "SELECT COUNT(*) as count from bike where bike_id = ?";
+        $res = self::executeRequest($sql, [$id]);
+        return $res->rowCount() == 1;
+    }
 }
