@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__ . "/../core/controller.php";
-require_once __DIR__ . "/../models/_ReservationModel.php";
+require_once __DIR__ . "/../models/_RepairModel.php";
 
 class UserRepairController extends Controller {
     public static function execute(){
         PrivilegeMiddleware::requireUser();
         if(self::isPostRequest() && self::isSetPOST("bike")){
-            
+            RepairModel::repair(self::fetchPOST('bike'));
         }
         $bikes = ReservationModel::getReservedBikes();
         ob_start();
