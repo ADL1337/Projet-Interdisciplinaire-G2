@@ -19,8 +19,6 @@ class UserReservationAddController extends Controller {
 
             # check if both dateFrom and dateEnd are in a date format
             if(preg_match("/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/", $dateFrom) and preg_match("/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/", $dateEnd)){
-
-                # check if the bike exist (in case someone modify the value in the form)
                 if(BikeModel::doesBikeExist($bike)){
 
                     # if the reservation is successful the user is redirected to the list of all his reservation

@@ -13,16 +13,22 @@ class UserReservationController extends Controller {
         $userReservations = UserReservationModel::getUserReservation(SessionManager::get('user_id'));
 
         ob_start();
+        echo '<section class="reservation bg_user">';
         while($reservation = $userReservations->fetch()){
             ?>
-            <tr>
-                <td><?= $reservation["type_name"] ?></td>
-                <td><?= $reservation["reservation_start"] ?></td>
-                <td><?= $reservation["reservation_end"] ?></td>
-            </tr>
-            <?php
+            <div class="reservation_wrapped">
+                <div class="review">
+                    <h2>Bike</h2>
+                    <div class="infos">
+                        <div class="tab-reservation-list">Bike type:<br> <?= $reservation["type_name"] ?></div>
+                        <div class="tab-reservation-list">Reservation start:<br> <?= $reservation["reservation_start"] ?></div>
+                        <div class="tab-reservation-list">Reservation end: <br><?= $reservation["reservation_end"] ?></div>
+                    </div>
+                </div>
+            </div>
+            <?php 
         }
-
+        echo '</section>';
         $reservations = ob_get_clean();
 
         # render the page with the reservation list
