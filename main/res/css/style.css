@@ -291,3 +291,20 @@ div.reservation_wrapped .opgg{
     align-items: center;
     margin-top: 5px;
 }
+
+footer div.return{
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    bottom: 0;
+    padding: 60px;
+}
+
+
+div.return a{
+    color: #fff;
+}
+
+div.return a:hover{
+    color: #580a0a;
+}
