@@ -1,4 +1,4 @@
-<div class="statistics-container">
+<div class="statistics-container bg_admin">
     <div class="container-title">Statistics</div>
     <div class="container-content">
         <div class="content-entry"><?= $totalBikesReserved ?></div>
