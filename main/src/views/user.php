@@ -2,7 +2,7 @@
     <h2>User Dashboard</h2>
     <div class="user-dashboard-container-wrapped">
         <div class="button_user" >
-            <a href="/reservation">Resrve a bike</a>      
+            <a href="/reservation">Reserve a bike</a> 
         </div>
         <div class="button_user">
             <a href="/reservationList">See my reservations</a> 
