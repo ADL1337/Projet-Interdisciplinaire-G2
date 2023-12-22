@@ -1,5 +1,5 @@
 <div class="form bg_admin">
-    <h2>Administration</h2>
+    <h2>Administration Dashboard</h2>
     <div class="dashboard-container">
         <div class="button">
             <a href="/manageSchedule">Manage Schedule</a>

@@ -3,11 +3,20 @@
     src: url("/res/fonts/NovaRound-Regular.ttf");
 }
   
+var{
+    --blob-bg-user-color: #79F1A4;
+    --blob-bg-user-color: #79F1A4;
+}
+
 body {
     font-family: "NovaRound-Regular";
-    margin: 0px;
-    padding: 0px;
     font-size: 1.2em;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
 body:has(.bg_admin) {
@@ -15,8 +24,11 @@ body:has(.bg_admin) {
 }
 
 body:has(.bg_user) {
-    background-image: linear-gradient( 359.8deg,  rgba(252,255,222,1) 2.2%, rgba(182,241,171,1) 99.3% );
+    background-color: #85FFBD;
+    background-image: linear-gradient(225deg, #85FFBD 0%, #d3ff7d 100%);
+
 }
+
 
 nav{
     border-bottom: 1px solid black;
@@ -33,6 +45,12 @@ nav div.flex-space-between{
 nav img{
     width: 70px;
     height: 70px;
+}
+
+.nav-user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 nav h1.nav-title{
@@ -158,11 +176,6 @@ div.button a:hover{
     background-color: #F0A7A7;
 }
 
-body{
-    height: 100vh;
-}
-
-
 div.form{
     display: flex;
     flex-direction: column;
@@ -190,10 +203,16 @@ div.mb-5{
     display: flex;
     flex-direction: column;
     margin-bottom: 15px; 
+    width: 450px;
+    height: auto;
+}
+
+div.mb-5 select{
+    font-size: 1em;
 }
 
 div.mb-5 input{
-    color: #fff;
+    font-size: 1em;
 }
 
 div.mb-51{
@@ -209,8 +228,272 @@ div.form1 div.mb-51 input{
     color: #fff;
     border: 1px solid black;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 div.form1 div.mb-51 input:hover{
     background-color: #F0A7A7;
+}
+
+div.reservation_wrapped{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px;
+}
+
+div.reservation_wrapped .infos{
+    list-style-type: none;
+    padding: 15px;
+    margin: 0;
+    line-height: 1.5;
+    background-color: #D9D9D9;
+}
+
+div.reservation_wrapped .review{
+    height: fit-content;
+    background-color: #D9D9D9;
+    
+}
+
+div.reservation_wrapped h2{
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid black;
+    background-color: #D41515;
+    color: white;
+    padding: 10px 25px 10px 25px;
+    font-weight: 400;
+    font-size: 1.6em;
+}
+
+div.reservation_wrapped button{
+    width: 100%;
+}
+
+div.reservation_wrapped button{
+    width: 100%;
+    background-color: #F0A7A7;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+section.reservation {
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+    padding: 50px;
+}
+
+div.reservation_wrapped img{
+    width: 90px;
+    height: 90px;
+    align-content: center;
+}
+
+div.reservation_wrapped .li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+div.reservation_wrapped .opgg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+footer div.return{
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    bottom: 0;
+    padding: 60px;
+}
+
+footer div.return a{
+    color: #fff;
+}
+
+footer div.return a:hover{
+    color: #580a0a;
+}
+
+footer.user div.return a{
+    color: #887612;
+}
+
+footer.user div.return a:hover{
+    color: black;
+}
+
+div.user-dashboard-container{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+div.user-dashboard-container-wrapped{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_user{
+    padding-bottom: 30px;
+}
+
+.button_user a{
+    margin: 100px 50px;
+    background-color: #9bd1e5;
+    padding: 10px 45px;
+    border-radius: 70px;
+    border: 1px solid black;
+    color: #fff;
+    font-size: 1em;
+    font-family: "NovaRound-Regular";
+    font-weight: normal;
+    line-height: 3rem;
+    text-decoration: none;
+}
+
+.button_user:hover a{
+    background-color: #6a8eae  ;
+}
+
+.button_user a {
+    text-decoration: none;
+    color:black
+}
+
+.user-dashboard-container h2{
+    font-size: 1.8em;
+    font-weight: normal;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.user-reservation-wrapped{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user-reservation-wrapped .tab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-reservation-wrapped .user-label{
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-reservation-wrapped .tab{
+    padding-top: 40px;
+
+}
+
+.tab1{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user-reservation-wrapped .user-label input{
+    font-size: 1em;
+}
+
+.user-reservation-wrapped .user-label1 .user-submit input{
+    padding: 5px 20px;
+    font-size: 1em;
+}
+
+.user-label1{
+    padding-bottom: 25px;
+}
+
+.user-reservation-wrapped .tab1{
+    padding: 0;
+    margin: 0;
+}
+
+.user-reservation-wrapped .tab1 select, input{
+    font-size: 1em;
+    
+}
+
+.user-label1 input{
+    padding: 5px 20px;
+    font-size: 1em;
+}
+
+.user-label1 select{
+    padding: 5px 20px;
+    font-size: 1em;
+}
+
+.reservation_wrapped .infos .tab-reservation-list{
+    padding-bottom: 25px;
+}
+
+.blob {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #79f1a56c;
+    width: 30vmax;
+    z-index: -1;
+    animation: move 20s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+
+  body:has(.bg_admin) .blob {
+    fill: #feb6924b
+    ;
+  } 
+  
+  @keyframes move {
+    0%   { transform: scale(1)   translate(10px, -30px); }
+    38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    100% { transform: scale(1)   translate(10px, -30px); }
+  }
+
+.blob1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #d1f1796c;
+    width: 30vmax;
+    z-index: -1;
+    animation: move 20s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    }
+
+    body:has(.bg_admin) .blob1 {
+    fill: #feb6924b
+    ;
+    } 
+
+    @keyframes move {
+    100%   { transform: scale(1)   translate(10px, -30px); }
+    80%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    78%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    40%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    38%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    0% { transform: scale(1)   translate(10px, -30px); }
 }

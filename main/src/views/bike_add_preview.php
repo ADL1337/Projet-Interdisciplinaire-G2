@@ -17,6 +17,7 @@
                     </select>
             </div>
             <div class="mb-5">
+                <label for="color">Color : </label>
                 <input type="text" name="color" placeholder="The color of the bike">
             </div>
             <div class="mb-51">
@@ -26,3 +27,8 @@
     </div>
 </div>
 </div>
+<footer>
+    <div class="return">
+        <a href ="/login">Return to Dashboard</a>
+    </div>
+</footer>
