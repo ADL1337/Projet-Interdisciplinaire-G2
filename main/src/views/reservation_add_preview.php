@@ -8,7 +8,7 @@
             </div>
             <div class="user-label">
                 <label for="date_end">Date of the end of the reservation</label>
-                <input type="date" name="date_end" min="<?= $today ?>"  id="date_end" value="<?= $today ?>">
+                <input type="date" name="date_end" id="date_end" min="<?= $today ?>" value="<?= $today ?>">
             </div>
             <div class="user-label1">
                 <div class="user-submit">
