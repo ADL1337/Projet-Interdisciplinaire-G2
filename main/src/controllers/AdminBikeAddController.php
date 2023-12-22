@@ -25,7 +25,7 @@ class AdminBikeAddController extends Controller {
                     HttpErrorManager::redirectError("500");
                 # But if the insert is successful, we redirect to the bike list
                 } else {
-                    header('Location: /listBikeType');
+                    header('Location: /listBike');
                     exit();
                 }
             }
