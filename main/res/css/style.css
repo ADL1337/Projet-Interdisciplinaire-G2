@@ -3,11 +3,20 @@
     src: url("/res/fonts/NovaRound-Regular.ttf");
 }
   
+var{
+    --blob-bg-user-color: #79F1A4;
+    --blob-bg-user-color: #79F1A4;
+}
+
 body {
     font-family: "NovaRound-Regular";
-    margin: 0px;
-    padding: 0px;
     font-size: 1.2em;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
 body:has(.bg_admin) {
@@ -17,8 +26,9 @@ body:has(.bg_admin) {
 body:has(.bg_user) {
     background-color: #85FFBD;
     background-image: linear-gradient(225deg, #85FFBD 0%, #d3ff7d 100%);
-    
+
 }
+
 
 nav{
     border-bottom: 1px solid black;
@@ -165,11 +175,6 @@ div.button a{
 div.button a:hover{
     background-color: #F0A7A7;
 }
-
-body{
-    height: 100vh;
-}
-
 
 div.form{
     display: flex;
@@ -442,3 +447,27 @@ div.user-dashboard-container-wrapped{
 .reservation_wrapped .infos .tab-reservation-list{
     padding-bottom: 25px;
 }
+
+.blob {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #79F1A4;
+    width: 30vmax;
+    z-index: -1;
+    animation: move 15s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+
+  body:has(.bg_admin) .blob {
+    fill: #D41515;
+  } 
+  
+  @keyframes move {
+    0%   { transform: scale(1)   translate(10px, -30px); }
+    38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    100% { transform: scale(1)   translate(10px, -30px); }
+  }
