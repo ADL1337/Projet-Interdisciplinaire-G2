@@ -301,12 +301,20 @@ footer div.return{
 }
 
 
-div.return a{
+footer div.return a{
     color: #fff;
 }
 
-div.return a:hover{
+footer div.return a:hover{
     color: #580a0a;
+}
+
+footer.user div.return a{
+    color: #1bdb71;
+}
+
+footer.user div.return a:hover{
+    color: black;
 }
 
 #user{
