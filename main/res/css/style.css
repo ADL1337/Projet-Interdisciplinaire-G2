@@ -282,6 +282,7 @@ div.reservation_wrapped button{
 section.reservation {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin: 15px;
     padding: 50px;
 }
