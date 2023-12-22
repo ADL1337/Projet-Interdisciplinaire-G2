@@ -452,15 +452,16 @@ div.user-dashboard-container-wrapped{
     position: absolute;
     top: 0;
     left: 0;
-    fill: #79F1A4;
+    fill: #79f1a56c;
     width: 30vmax;
     z-index: -1;
-    animation: move 15s ease-in-out infinite;
+    animation: move 20s ease-in-out infinite;
     transform-origin: 50% 50%;
   }
 
   body:has(.bg_admin) .blob {
-    fill: #D41515;
+    fill: #feb6924b
+    ;
   } 
   
   @keyframes move {
@@ -471,3 +472,28 @@ div.user-dashboard-container-wrapped{
     80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
     100% { transform: scale(1)   translate(10px, -30px); }
   }
+
+.blob1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #d1f1796c;
+    width: 30vmax;
+    z-index: -1;
+    animation: move 20s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    }
+
+    body:has(.bg_admin) .blob1 {
+    fill: #feb6924b
+    ;
+    } 
+
+    @keyframes move {
+    100%   { transform: scale(1)   translate(10px, -30px); }
+    80%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    78%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    40%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    38%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    0% { transform: scale(1)   translate(10px, -30px); }
+}
