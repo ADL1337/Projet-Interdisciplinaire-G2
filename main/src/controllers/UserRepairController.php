@@ -5,13 +5,19 @@ require_once __DIR__ . "/../models/_ReservationModel.php";
 class UserRepairController extends Controller {
     public static function execute(){
         PrivilegeMiddleware::requireUser();
+        if(self::isPostRequest() && self::isSetPOST("bike")){
+            
+        }
         $bikes = ReservationModel::getReservedBikes();
         ob_start();
         while($bike = $bikes->fetch()){
             ?>
             <div>
-                <?= "{$bike["type_name"]} {$bike["bike_color"]}" ?>
-                <a href="?bike=<?= $bike["bike_id"] ?>"></a>
+                <form action="" method="post">
+                    <?= "{$bike["type_name"]} {$bike["bike_color"]}" ?>
+                    <input type="hidden" name="bike" value="<?= $bike["bike_id"] ?>">
+                    <input type="submit" value="Repair">
+                </form>
             </div>
             <?php
         }
