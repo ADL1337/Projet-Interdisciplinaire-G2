@@ -14,7 +14,7 @@ class SessionManager {
     }
 
     private static function _get($key) {
-        return $_SESSION[$key];
+        return (isset($_SESSION[$key]) ? $_SESSION[$key]: null);
     }
 
     public static function set($key, $value) {
