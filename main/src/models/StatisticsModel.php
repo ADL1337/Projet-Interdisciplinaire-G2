@@ -13,7 +13,7 @@ class StatisticsModel extends Model {
     }
 
     public static function getMostReservedBike() {
-        $sql = 'SELECT bike_id, COUNT(*)
+        $sql = 'SELECT bike_id, COUNT(*) as bike_usage_count
                 FROM reservation
                 GROUP BY bike_id
                 ORDER BY COUNT(*) DESC
@@ -22,7 +22,8 @@ class StatisticsModel extends Model {
         if ($response->rowCount() !== 1) {
             return false;
         }
-        return $response->fetch()["bike_id"];
+        $res = $response->fetch();
+        return [$res["bike_id"], $res["bike_usage_count"]];
     }
 
     /*public static function getMostReservedBikeType() {
