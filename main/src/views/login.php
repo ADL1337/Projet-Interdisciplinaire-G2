@@ -1,4 +1,4 @@
-<div class ="form-container">
+<div class ="form-container bg_user">
     <div class="form">
         <h2>Log In</h2>
         <form method="POST" action="login">
