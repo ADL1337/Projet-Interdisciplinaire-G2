@@ -1,3 +1,4 @@
+Voici le cahier de bord de l'installation Linux
 
 ```bash
 sudo dnf install httpd (and httpd-tools)
@@ -9,6 +10,7 @@ sudo systemctl enable httpd.service
 		- dans <Directory "/web">
 			- supp tout les Rewrite
 			- remplacer par 
+
 ```bash
 RewriteEngine On
 
@@ -24,9 +26,9 @@ RewriteEngine On
 sudo dnf install iptables 
 sudo systemctl enable iptable 
 sudo systemctl start iptables
-
 ```
-	- créer un fichier .sh 
+
+-  créer un fichier  firewall.sh 
 ```bash
 !/bin/bash
 
@@ -62,8 +64,8 @@ iptables -A OUTPUT -p icmp -j ACCEPT
 # autoriser  LDAP 
 iptables -A OUTPUT -p TCP --sport 389 -j ACCEPT
 ```
-	- créer fichier.service 
 
+- créer firewall.service 
 ```bash
 [Unit]
 Description=firewall
@@ -109,7 +111,7 @@ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.
 	- termius > paramètres > generate key > copy puplic key > /home/admin/.ssh/authorized_keys > paste key 
 	-  /etc/ssh/sshd_config > uncomment # PermitRootLogin and PubkeyAuthentication yes
 
-- crontab 
+- Backup
 	- nouvelle partition 
 		```bash
 		sudo fdisk -l
