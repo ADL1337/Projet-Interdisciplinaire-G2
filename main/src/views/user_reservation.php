@@ -1,4 +1,6 @@
 <table>
     <?= $reservations ?>
 </table>
-<a href ="/login">Return to login</a>
+<div class="return">
+    <a href ="/login">Return to Dashboard</a>
+</div>

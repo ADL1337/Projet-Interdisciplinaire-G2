@@ -1,3 +1,4 @@
+
 <div id="user">
     <div class="button_user" >
         <a href="/reservation">Reservation</a>      
@@ -9,6 +10,9 @@
             <a href="/repair">Repair my bike</a>
     </div>
 </div>
-<div class="return">
-    <a href ="/login">Return to Dashboard</a>
-</div>
+<footer class="user">
+    <div class="return">
+        <a href ="/login">Return to Dashboard</a>
+    </div>
+</footer>
+<div class="bg_user">
