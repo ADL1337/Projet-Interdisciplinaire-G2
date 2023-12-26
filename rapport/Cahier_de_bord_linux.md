@@ -1,22 +1,23 @@
 Voici le cahier de bord de l'installation Linux
 
 ```bash
-sudo dnf install httpd (and httpd-tools)
+sudo dnf install httpd # (and httpd-tools)
 sudo systemctl enable httpd.service 
 ```
 - Dans /etc/httpd/conf httpd.conf 
 	- modifier DocumentRoot "/web" 
-		- en desous rajouter ServerName www.isims.park
+		- en dessous rajouter ServerName www.isims.park
 		- dans <Directory "/web">
-			- supp tout les Rewrite
-			- remplacer par 
+			- Supprimer toutes les règles de "rewrite" potentiellement déjà situées dans ce répertoire
+			- Remplacer par les règles si dessous
 
 ```bash
-RewriteEngine On
+	RewriteEngine On
 
     RewriteCond %{REQUEST_FILENAME} !\.css$
     RewriteCond %{REQUEST_FILENAME} !\.ttf$
     RewriteCond %{REQUEST_FILENAME} !\.svg$
+    RewriteCond %{REQUEST_FILENAME} !\.png$
     RewriteRule . index.php [L]
 ```
 - dans /etc/selinux 
@@ -28,14 +29,14 @@ sudo systemctl enable iptable
 sudo systemctl start iptables
 ```
 
--  créer un fichier  firewall.sh 
+-  Créer un script firewall.sh 
 ```bash
 !/bin/bash
 
-iptables -F   #vider la table au début
+iptables -F   # vide la table
 
-iptables -P INPUT DROP # remet les politiques par défault
-iptables -P OUTPUT DROP # remet les politiques par défault
+iptables -P INPUT DROP # remet les politiques par défaut
+iptables -P OUTPUT DROP # remet les politiques par défaut
 
 # accepter les connections etablies 
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
@@ -62,7 +63,8 @@ iptables -A INPUT -p icmp -j ACCEPT
 iptables -A OUTPUT -p icmp -j ACCEPT
 
 # autoriser  LDAP 
-iptables -A OUTPUT -p TCP --sport 389 -j ACCEPT
+iptables -A OUTPUT -p TCP --dport 389 -j ACCEPT
+iptables -A INPUT -p TCP --sport 389 -j ACCEPT
 ```
 
 - créer firewall.service 
@@ -116,18 +118,6 @@ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.
 		```bash
 		sudo fdisk -l
 		sudo fdisk /dev/nvme0n2
-		n
-		p
-
-
-
-
-		l
-		t
-		8e
-		w
-
-
 		mkdir backup 
 		mount /dev/nvme0n2 /backup
 		nano /etc/fstab 
